@@ -27,4 +27,4 @@ mod tests {
             assert_eq!(invert_the_case(b.to_string()), a.to_string());
         }
     }
-}
+}      
