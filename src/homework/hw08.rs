@@ -26,7 +26,6 @@ fn is_prime(n: &u32) -> bool {
         i += 1;
     }
 
-    // ще одна зайва перевірка
     if is_prime == true {
         return true;
     } else {
