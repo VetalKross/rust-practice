@@ -1,7 +1,3 @@
-// src/homework/hw13.rs
-
-// Примітивне рішення для підрахунку зайнятої площі прямокутників
-
 #[derive(Debug)]
 struct Point {
     x: i32,
@@ -13,7 +9,6 @@ struct Rectangle {
     b: Point, // нижня права точка
 }
 
-// Функція рахує площу, яка покрита хоча б одним прямокутником
 fn area_occupied(xs: &Vec<Rectangle>) -> i32 {
     // 1) знаходимо максимальні x та y
     let mut max_x = 0;
@@ -25,13 +20,11 @@ fn area_occupied(xs: &Vec<Rectangle>) -> i32 {
         if r.b.y > max_y { max_y = r.b.y; }
     }
 
-    // 2) створюємо 2D-вектор (решітку) заповнений false
     let mut grid = Vec::new();
     for _ in 0..=max_y {
         grid.push(vec![false; (max_x + 1) as usize]);
     }
 
-    // 3) заповнюємо клітинки для кожного прямокутника
     for rect in xs {
         for x in rect.a.x..rect.b.x {
             for y in rect.b.y..rect.a.y {
@@ -39,8 +32,6 @@ fn area_occupied(xs: &Vec<Rectangle>) -> i32 {
             }
         }
     }
-
-    // 4) рахуємо всі "зайняті" клітинки
     let mut area = 0;
     for row in &grid {
         for &cell in row {
@@ -55,7 +46,6 @@ fn area_occupied(xs: &Vec<Rectangle>) -> i32 {
 
 // Додаємо порожню точку входу, щоб можна було Cargo run без помилок
 fn main() {
-    // Приклад: рахуємо площу для тестових даних
     let rectangles = vec![
         Rectangle { a: Point { x: 2, y: 9 },  b: Point { x: 5,  y: 3 } },
         Rectangle { a: Point { x: 1, y: 8 },  b: Point { x: 11, y: 6 } },
@@ -69,7 +59,6 @@ fn main() {
 mod tests {
     use super::*;
 
-    // тестові дані, як в умові
     fn test_data() -> Vec<Rectangle> {
         vec![
             Rectangle { a: Point { x: 2, y: 9 },  b: Point { x: 5,  y: 3 } },
